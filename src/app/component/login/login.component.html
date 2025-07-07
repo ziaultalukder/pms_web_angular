@@ -1,0 +1,48 @@
+<section class="ftco-section">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="icon d-flex align-items-center justify-content-center">
+                        <span class="fa fa-user-o"></span>
+                    </div>
+                    <h3 class="text-center mb-4">Pharmacy Management System</h3>
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+                        <div class="form-group">
+                            <input type="text" formControlName="contactNo" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f['contactNo'].errors }" />
+                            <div *ngIf="submitted && f['contactNo'].errors" class="invalid-feedback">
+                                <div *ngIf="f['contactNo'].errors['required']">Contact No is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" formControlName="password" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                <div *ngIf="f['password'].errors['required']">Password required</div>
+                            </div>
+                        </div>
+                        <div class="form-group d-md-flex">
+                            <div class="w-50">
+                                <label class="checkbox-wrap checkbox-primary">Remember Me
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="w-50 text-md-right">
+                                <a href="#">Forgot Password</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary rounded" [disabled]="isLoading"><i class="fa"
+                                    [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"></i> LOG
+                                IN</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

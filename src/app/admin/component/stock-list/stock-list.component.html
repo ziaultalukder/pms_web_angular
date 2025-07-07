@@ -1,0 +1,50 @@
+<form [formGroup]="stockListForm">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="date" formControlName="startDate" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="date" formControlName="endDate" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-2 ">
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="ShowReport(stockListForm.value)">Show</button> | 
+        <button class="btn btn-primary" (click)="NewStock()">New Stock</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">SL</th>
+            <th scope="col">Invoice</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Discount%</th>
+            <th scope="col">Discount Taka</th>
+            <th scope="col">Stock Date</th>
+            <th scope="col">Grand Total</th>
+            <!-- <th scope="col">Action</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr *ngFor="let data of stockList; let i = index">
+            <td data-label="SL">{{i+1}}</td>
+            <td data-label="Invoice">{{data.invoice}}</td>
+            <td data-label="Total Price">{{data.totalPrice}}</td>
+            <td data-label="Discount%">{{data.discountPercentage}}</td>
+            <td data-label="Discount Taka">{{data.discountValue}}</td>
+            <td data-label="Stock Date">{{data.createDate | date : 'yyyy-MM-dd h:mm:ss a'}}</td>
+            <td data-label="Grand Total">{{data.grandTotal}}</td>
+            <!-- <td data-label="Action">
+              <button class="btn btn-info btn-sm" (click)="viewStockInDetails(data.id)">Details</button>
+            </td> -->
+        </tr>
+    </tbody>
+</table>

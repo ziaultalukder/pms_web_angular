@@ -1,0 +1,60 @@
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Shop Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Contact No</th>
+            <th scope="col">Email</th>
+            <th scope="col">Joining Date</th>
+            <!-- <th scope="col">Action</th> -->
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td data-label="Name">{{profile.name}}</td>
+            <td data-label="Shop Name">{{profile.shopName}}</td>
+            <td data-label="Address">{{profile.address}}</td>
+            <td data-label="Contact No">{{profile.contactNo}}</td>
+            <td data-label="Email">{{profile.email}}</td>
+            <td data-label="Joining Date">{{profile.createDate | date}}</td>
+            <td>
+                <button class="btn btn-primary btn-sm" (click)="AddNewUser()">Add User</button>
+            </td>
+            <!-- <td>
+                <button class="btn btn-success btn-sm" (click)="PasswordChange(profile.id)">Password Change</button>
+            </td> -->
+        </tr>
+    </tbody>
+</table>
+<br>
+<div class="card">
+    <h5 class="card-header">USERS LIST</h5>
+    <div class="card-body">
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact No</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let data of profile.clientUsers">
+                    <td data-label="Name">{{data.name}}</td>
+                    <td data-label="Email">{{data.email}}</td>
+                    <td data-label="Contact No">{{data.mobile}}</td>
+                    <td>
+                        <button class="btn btn-sm" (click)="ActiveAndDeActive(data)"
+                            [ngClass]="{'red-button': data.isActive == 'Y', 'green-button': data.isActive == 'N'}">{{data.isActive
+                            == 'Y' ? "DeActive" : "Active"}}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

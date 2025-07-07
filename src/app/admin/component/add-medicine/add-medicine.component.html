@@ -1,0 +1,35 @@
+<div class="register-form">
+    <form [formGroup]="saveItemForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label>Medicine Name</label>
+            <ng-select (input)="onInput($event)" (change)="selectedValue($event)" #testInput [items]="cities"
+                bindLabel="name" bindValue="id" placeholder="search medicne" formControlName="manufactureId">
+            </ng-select>
+        </div>
+
+        <div class="form-group">
+            <label>Manufacturer Name</label>
+            <input type="text" formControlName="manufacturer" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['manufacturer'].errors }" readonly />
+
+            <div *ngIf="submitted && f['manufacturer'].errors" class="invalid-feedback">
+                <div *ngIf="f['manufacturer'].errors['required']">Manufacturer Name is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Brand Name</label>
+            <input type="text" formControlName="brandName" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['brandName'].errors }" />
+            <div *ngIf="submitted && f['brandName'].errors" class="invalid-feedback">
+                <div *ngIf="f['brandName'].errors['required']">Brand Name is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="isLoading"><i class="fa"
+                    [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"></i>Save</button>
+        </div>
+    </form>
+</div>

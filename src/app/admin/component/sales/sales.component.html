@@ -1,0 +1,168 @@
+<form [formGroup]="salesForm">
+
+    <div class="form-group">
+        <label>Medicine Name</label>
+        <ng-select (input)="onInput($event)" (change)="selectedValue($event)" #testInput [items]="cities"
+            bindLabel="brandName" bindValue="sl" placeholder="search medicne" formControlName="search">
+        </ng-select>
+    </div>
+
+    <div class="form-group" hidden>
+        <label>Manufacture Name</label>
+        <input type="text" formControlName="sl" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Manufacture Name</label>
+        <input type="text" formControlName="manufacturerName" class="form-control" />
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Sales Price</label>
+                <input #testInput1 type="number" formControlName="salesPrice" readonly class="form-control" min="0"
+                    oninput="this.value = Math.abs(this.value)" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Purchase Price</label>
+                <input type="number" formControlName="purchasePrice" readonly class="form-control" min="0"
+                    oninput="this.value = Math.abs(this.value)" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Available Quantity</label>
+                <input type="number" formControlName="quantity" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>New Quantity</label>
+                <input type="number" formControlName="newQuantity" #NewQty class="form-control" min="0"
+                    oninput="this.value = Math.abs(this.value)" />
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary btn-ms" (click)="AddSalesInfo(salesForm.value)">Add</button>
+    </div>
+
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Action</th>
+            <th scope="col">Brand Name</th>
+            <th scope="col">Sales Price</th>
+            <th scope="col">Available Qty</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+            <!-- <th scope="col">Discount %</th>
+            
+            <th scope="col">Sub Total</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let med of SaledDetailsList; let i = index">
+            <td data-label="Action">
+                <input (click)="removeItem(i)" type="button" class="btn btn-danger btn-sm" value="remove">
+            </td>
+            <td data-label="Brand Name">{{med.brandName}}</td>
+            <td data-label="Sales Price">{{med.salesPrice}}</td>
+            <td data-label="Available Qty">{{med.existingQuantity}}</td>
+            <td data-label="Quantity">
+                <input style="text-align: center;" type="number" value="{{med.quantity}}"
+                    (input)="onInputQuantity($event, med.medicineId, med.salesPrice, med.existingQuantity, i)"
+                    class="form-control" min="0" oninput="this.value = Math.abs(this.value)">
+            </td>
+            <td data-label="Total Price">{{med.totalTaka}}</td>
+        </tr>
+
+        <tr>
+            <td colspan="5" style="font-weight: bold; text-align: right;">Sub Total : </td>
+            <td data-label="Sub Total">{{total}}</td>
+        </tr>
+        <tr>
+            <td colspan="5" style="font-weight: bold; text-align: right;">Discount % : </td>
+            <input style="text-align: center;" type="number" value="0" #dst (input)="discountCalculation($event)"
+                class="form-control" min="0" oninput="this.value = Math.abs(this.value)">
+        </tr>
+
+        <tr>
+            <td colspan="5" style="font-weight: bold; text-align: right;">Total Discount :</td>
+            <td>{{discountTaka}}</td>
+        </tr>
+        <tr>
+            <td colspan="5" style="font-weight: bold; text-align: right;">Vat % :</td>
+            <td>{{vat}}</td>
+        </tr>
+        <tr>
+            <td colspan="5" style="font-weight: bold; text-align: right;">Grand Total : </td>
+            <td>{{grandTotal}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<br>
+<div class="form-group">
+    <!-- <button class="btn btn-success" printSectionId="print-section" ngxPrint>SALES</button> -->
+    <button type="submit" (click)="SaveSalesInfo()" class="btn btn-primary rounded" [disabled]="isLoading"><i class="fa"
+            [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}" ></i>SALES</button>
+</div>
+
+
+<div hidden>
+    <div id="print-section">
+        <span>Janani Computer</span>
+        <span><strong>Email :</strong> example-gmail.com</span><br>
+        <span><strong>Contact No :</strong> 01728388751</span><br>
+        <span><strong>Address :</strong> Mirpur, Dhaka-1216</span><br>
+        <hr>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th width='150' style='border:1px solid black; '>Item</th>
+                    <th width='150' style='border:1px solid black; '>Qty</th>
+                    <th width='150' style='border:1px solid black; '>Price</th>
+                    <th width='150' style='border:1px solid black; '>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let med of SaledDetailsList">
+                    <td style="text-align: center; font-size: 20px;">{{med.brandName}}</td>
+                    <td style="text-align: center;">{{med.quantity}}</td>
+                    <td style="text-align: center;">{{med.salesPrice}}</td>
+                    <td style="text-align: center;">{{med.totalTaka}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Sub Total : </td>
+                    <th width='50'>{{total}}</th>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Discount% : </td>
+                    <th width='50'>{{currentValue}}</th>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Discount Total : </td>
+                    <th width='50'>{{discountTaka}}</th>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align: right;">Grand Total : </td>
+                    <th width='50'>{{grandTotal}}</th>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <!-- <button printSectionId="print-section" ngxPrint>print</button> -->
+</div>

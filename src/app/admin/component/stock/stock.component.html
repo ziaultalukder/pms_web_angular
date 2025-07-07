@@ -1,0 +1,125 @@
+<form [formGroup]="stockForm">
+
+    <div class="form-group">
+        <label>Stock Date</label>
+        <input type="date" formControlName="stockDate" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Medicine Name</label>
+        <ng-select (input)="onInput($event)" (change)="selectedValue($event)" #testInput [items]="cities"
+            bindLabel="brandName" bindValue="sl" placeholder="search medicne" formControlName="search">
+        </ng-select>
+    </div>
+
+    <div class="form-group" hidden>
+        <label>Manufacture Name</label>
+        <input type="text" formControlName="sl" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Manufacture Name</label>
+        <input type="text" formControlName="manufacturerName" class="form-control" />
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Sales Price</label>
+                
+                <!-- <input #testInput1 type="number" formControlName="salesPrice" class="form-control" min="0"
+                    oninput="this.value = Math.abs(this.value)" /> -->
+                
+                <input #testInput1 type="number" formControlName="salesPrice" class="form-control" step="0.01" min="0" oninput="validity.valid || (value = '');" >
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Purchase Price</label>
+                <input type="number" formControlName="purchasePrice" class="form-control" step="0.01" min="0"
+                    oninput="validity.valid || (value = '');" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Available Quantity</label>
+                <input type="number" formControlName="quantity" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>New Quantity</label>
+                <input type="number" formControlName="NewQuantity" #NewQty class="form-control" min="0"
+                    oninput="this.value = Math.abs(this.value)" />
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary btn-ms" (click)="AddStockQty(stockForm.value)">Add</button>
+    </div>
+</form>
+
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Action</th>
+            <th scope="col">Brand Name</th>
+            <th scope="col">Purchase Price</th>
+            <th scope="col">Sales Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let med of StockInDetailsList; let i = index">
+            <td data-label="Action">
+                <input (click)="removeItem(i)" type="button" class="btn btn-danger" value="remove">
+            </td>
+            <td data-label="Brand Name">{{med.brandName}}</td>
+            <td data-label="Purchase Price">{{med.pruchasePrice}}</td>
+            <td data-label="Sales Price">{{med.salesPrice}}</td>
+            <td data-label="Quantity">
+                <input style="text-align: center;" type="number" value="{{med.newQty}}"
+                    (input)="onInputQuantity($event, med.medicineId, med.salesPrice)" class="form-control" min="0"
+                    oninput="this.value = Math.abs(this.value)">
+            </td>
+
+            <td data-label="Total Price">{{med.totalPrice}}</td>
+        </tr>
+
+        <tr>
+            <td colspan="5" style="font-weight: bold; text-align: right;">Sub Total : </td>
+            <td data-label="Sub Total">{{total}}</td>
+        </tr>
+
+        <tr>
+            <td colspan="5" style="font-weight: bold; text-align: right;">Discount % : </td>
+            <input style="text-align: center;" type="number" class="form-control" value="{{discount}}"
+                (input)="onInputDiscount($event)" min="0" oninput="this.value = Math.abs(this.value)">
+        </tr>
+
+        <tr>
+            <td colspan="5" style="font-weight: bold; text-align: right;">Discount Taka :</td>
+            <td>{{discountTaka}}</td>
+        </tr>
+
+        <tr>
+            <td colspan="5" style="font-weight: bold; text-align: right;">Grand Total : </td>
+            <td>{{grandTotal}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<br>
+<div class="form-group">
+    <!-- <button class="btn btn-primary" (click)="SaveStockInfo()">Save</button> -->
+    <button type="submit" (click)="SaveStockInfo()" class="btn btn-primary rounded" [disabled]="isLoading"><i class="fa"
+            [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}" ></i>STOCK</button>
+</div>

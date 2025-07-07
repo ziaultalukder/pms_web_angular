@@ -1,0 +1,49 @@
+<div class="d-flex">
+
+        <aside id="sidebar" *ngIf="expan == true"  [@toggle]="expan == true" >
+            <div class="sidebar-logo">
+                <a [routerLink]="['/blog']">BLOG</a>
+            </div>
+            <!-- Sidebar Navigation -->
+            <ul class="sidebar-nav p-0">
+                <li class="sidebar-header">
+                    Tools & Components
+                </li>
+                <li class="sidebar-item" *ngFor="let item of navBerData; let i= index" >
+                    <a [routerLink]="[item.link]" routerLinkActive="active" class="sidebar-link">
+                        <span>{{item.name}}</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" (click)="logout()">
+                        <span>logout</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- Sidebar Navigation Ends -->
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link">
+                    <i class="lni lni-exit"></i>
+                    <span>Setting</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="main">
+            <nav class="navbar navbar-expand">
+                <button class="toggler-btn" type="button" (click)="showHide()" >
+                    <i class="lni lni-text-align-left"></i>
+                </button>
+            </nav>
+            
+            <main class="p-3">
+                <div>
+                    <div >
+   
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+

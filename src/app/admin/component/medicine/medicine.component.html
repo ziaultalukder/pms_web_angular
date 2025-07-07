@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-8">
+        <button class="btn btn-primary btn-sm" (click)="AddStock()">Add Item</button>
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="search item" (input)="onInput($event)">
+      </div>
+    </div>
+
+  </div>
+  <div class="card-body">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Brand Name</th>
+          <th scope="col">Manufacturer Name</th>
+          <th scope="col">Purchase Price</th>
+          <th scope="col">Sales Price</th>
+          <th scope="col">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let med of medicneList">
+          <td data-label="Brand Name">{{med.brandName}}</td>
+          <td data-label="Manufacturer Name">{{med.manufacturerName}}</td>
+          <td data-label="Purchase Price">{{med.purchasePrice}}</td>
+          <td data-label="Sales Price">{{med.salesPrice}}</td>
+          <td data-label="Quantity">{{med.quantity}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

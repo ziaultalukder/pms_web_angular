@@ -1,0 +1,155 @@
+<div class="register-form">
+    <form [formGroup]="saveUserForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" formControlName="name" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
+            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                <div *ngIf="f['name'].errors['required']">First Name is required</div>
+            </div>
+        </div>
+
+        <!-- <div class="form-group">
+            <label>txLastName</label>
+            <input type="text" formControlName="txLastName" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['txLastName'].errors }" />
+            <div *ngIf="submitted && f['txLastName'].errors" class="invalid-feedback">
+                <div *ngIf="f['txLastName'].errors['required']">txLastName is required</div>
+            </div>
+        </div> -->
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" formControlName="email" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Mobile no </label>
+            <input type="text" formControlName="mobile" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['mobile'].errors }" />
+
+            <div *ngIf="submitted && f['mobile'].errors" class="invalid-feedback">
+                <div *ngIf="f['mobile'].errors['required']">mobile no is required</div>
+                <div *ngIf="f['mobile'].errors['mobile']">
+                    mobile no must be at least 11 characters
+                </div>
+                <div *ngIf="f['mobile'].errors['maxlength']">
+                    mobile no must not exceed 11 characters
+                </div>
+            </div>
+        </div>
+
+        <!-- <label>Gender</label>
+
+        <input type="radio" class="form-check-input" formControlName="txGender" name="txGender"
+            [ngClass]="{ 'is-invalid': submitted && f['txGender'].errors }"> Male
+
+        <input type="radio" class="form-check-input" formControlName="txGender" name="txGender"
+            [ngClass]="{ 'is-invalid': submitted && f['txGender'].errors }"> FeMale
+
+        <div *ngIf="submitted && f['txGender'].errors" class="invalid-feedback">
+            <div *ngIf="f['txGender'].errors['required']">Gender is required</div>
+        </div> -->
+
+        <!-- <div class="form-group">
+            <div class="form-control">
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" formControlName="txGender" class="form-check-input" name="txGender"
+                            value="Male" [ngClass]="{ 'is-invalid': submitted && f['txGender'].errors }">Male
+
+                        <div *ngIf="submitted && f['txGender'].errors" class="invalid-feedback">
+                            <div *ngIf="f['txGender'].errors['required']">Gender is required</div>
+                        </div>
+                    </label>
+
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" formControlName="txGender" class="form-check-input" name="txGender"
+                            value="Female" [ngClass]="{ 'is-invalid': submitted && f['txGender'].errors }">Female
+
+                        <div *ngIf="submitted && f['txGender'].errors" class="invalid-feedback">
+                            <div *ngIf="f['txGender'].errors['required']">Gender is required</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div> -->
+
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" formControlName="password" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                <div *ngIf="f['password'].errors['required']">Password is required</div>
+                <div *ngIf="f['password'].errors['minlength']">
+                    Password must be at least 6 characters
+                </div>
+                <div *ngIf="f['password'].errors['maxlength']">
+                    Username must not exceed 40 characters
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" formControlName="txConfirmationPassword" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['txConfirmationPassword'].errors }" />
+            <div *ngIf="submitted && f['txConfirmationPassword'].errors" class="invalid-feedback">
+                <div *ngIf="f['txConfirmationPassword'].errors['required']">
+                    Confirm Password is required
+                </div>
+                <div *ngIf="f['txConfirmationPassword'].errors['matching']">
+                    Confirm Password does not match
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="form-group">
+            <label>txIdentity</label>
+            <input type="text" formControlName="txIdentity" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['txIdentity'].errors }" />
+
+            <div *ngIf="submitted && f['txIdentity'].errors" class="invalid-feedback">
+                <div *ngIf="f['txIdentity'].errors['required']">Email is required</div>
+                <div *ngIf="f['txIdentity'].errors['txIdentity']">Email is invalid</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>txEmail</label>
+            <input type="text" formControlName="txDescription" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['txDescription'].errors }" />
+
+            <div *ngIf="submitted && f['txDescription'].errors" class="invalid-feedback">
+                <div *ngIf="f['txDescription'].errors['required']">Email is required</div>
+                <div *ngIf="f['txDescription'].errors['txDescription']">Email is invalid</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>dttDob</label>
+            <input type="date" formControlName="dttDob" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['dttDob'].errors }" />
+
+            <div *ngIf="submitted && f['dttDob'].errors" class="invalid-feedback">
+                <div *ngIf="f['dttDob'].errors['required']">Email is required</div>
+                <div *ngIf="f['dttDob'].errors['dttDob']">Email is invalid</div>
+            </div>
+        </div> -->
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+
+    </form>
+</div>

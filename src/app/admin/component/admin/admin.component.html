@@ -1,0 +1,87 @@
+<div class="d-flex">
+    <!-- Sidebar -->
+    <!-- class="sidebar-toggle"  -->
+    <aside id="sidebar" *ngIf="expan == true" [@toggle]="expan == true">
+        <div class="sidebar-logo">
+            <a [routerLink]="['/admin']">PHARMA HOUSE</a>
+        </div>
+        <!-- Sidebar Navigation -->
+        <!-- <ul class="sidebar-nav p-0">
+            <li class="sidebar-header">
+                Tools & Components
+            </li>
+            <li class="sidebar-item" *ngFor="let item of navBerData; let i= index">
+
+                <div *ngIf="item.permission == 2 && permission=='N' ">
+                    <a [routerLink]="[item.link]" routerLinkActive="active" class="sidebar-link">
+                        <span>{{item.name}}</span>
+                    </a>
+                </div>
+                <div *ngIf="item.IsUser == 1 && permission=='Y' ">
+                    <a [routerLink]="[item.link]" routerLinkActive="active" class="sidebar-link">
+                        <span>{{item.name}}</span>
+                    </a>
+                </div>
+
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" (click)="logout()">
+                    <span>logout</span>
+                </a>
+            </li>
+        </ul> -->
+        <ul id="accordion" class="accordion">
+            <li *ngFor="let menu of menus; let i = index" [class.active]="menu.active">
+
+                <div class="menu" (click)="toggle(i)">
+
+                    <div *ngIf="menu.submenu.length == 0 ">
+                        <div *ngIf="menu.url !='logout' ">
+                            <a style="color: white;" [routerLink]="[menu.url] " routerLinkActive="active">
+                                <i [class]="menu.iconClass"></i>{{ menu.name }}
+                            </a>
+                        </div>
+                        <div *ngIf="menu.url =='logout' ">
+                            <a style="color: white;" [routerLink]="[menu.url] " routerLinkActive="active" (click)="logout()">
+                                <i [class]="menu.iconClass"></i>{{ menu.name }}
+                            </a>
+                        </div>
+                    </div>
+
+                    <div *ngIf="menu.submenu.length != 0 ">
+                        <i [class]="menu.iconClass"></i>
+                        {{ menu.name }}
+                        <i class="fa fa-chevron-down"></i>
+                    </div>
+
+                </div>
+
+                <ul class="submenu" #submenu [style.height.px]="menu.active ? submenu.scrollHeight : 0">
+                    <li *ngFor="let submenu of menu.submenu">
+                        <a [routerLink]="[submenu.url]" routerLinkActive="active">{{ submenu.name }}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </aside>
+    <!-- Sidebar Ends -->
+    <!-- Main Component -->
+    <!-- [ngClass]="expan ? 'hide-plus' :'show-plus'" -->
+    <div class="main">
+        <nav class="navbar navbar-expand">
+            <button class="toggler-btn" type="button" (click)="showHide()">
+                <i class="lni lni-text-align-left"></i>
+            </button>
+        </nav>
+
+        <main class="p-3">
+            <div>
+                <div>
+                    <!-- <h1>Bootstrap Sidebar Tutorial</h1> -->
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

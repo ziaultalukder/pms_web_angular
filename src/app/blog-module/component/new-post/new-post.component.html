@@ -1,0 +1,73 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit(postForm.value)">
+
+    <div class="form-group">
+        <label>Category</label>
+
+        <select class="form-control" formControlName="categoryId"
+            [ngClass]="{ 'is-invalid': submitted && f['categoryId'].errors }">
+            <option *ngFor="let item of categoryList; let i = index" value="{{item.id}}">
+                {{item.name}}
+            </option>
+        </select>
+
+        <div *ngIf="submitted && f['categoryId'].errors" class="invalid-feedback">
+            <div *ngIf="f['categoryId'].errors['required']">Category is required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" formControlName="title" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['title'].errors }" />
+        <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
+            <div *ngIf="f['title'].errors['required']">Title is required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <ckeditor [editor]="Editor" formControlName="description"
+            [ngClass]="{ 'is-invalid': submitted && f['title'].errors }"></ckeditor>
+        <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+            <div *ngIf="f['description'].errors['required']">Description is required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Thumbnail Image</label>
+        <input type="file" formControlName="featuredImage" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['featuredImage'].errors }" (change)="onSelectedFile($event)" />
+        <img [src]="FeaturedImage" alt="" height="100px" width="100px">
+
+        <div *ngIf="submitted && f['featuredImage'].errors" class="invalid-feedback">
+            <div *ngIf="f['featuredImage'].errors['required']">Thumbnail Image is required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Image</label>
+        <input type="file" formControlName="image" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['image'].errors }" (change)="onSelectedFilePostImage($event)" />
+
+        <img [src]="PostImage" alt="" height="200px" width="300px" >
+        <div *ngIf="submitted && f['image'].errors" class="invalid-feedback">
+            <div *ngIf="f['image'].errors['required']">Post Image is required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Tags</label>
+        <input type="text" formControlName="tags" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['tags'].errors }" />
+        <div *ngIf="submitted && f['tags'].errors" class="invalid-feedback">
+            <div *ngIf="f['tags'].errors['required']">Tags is required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <!-- <button type="submit" class="btn btn-primary">POST</button> -->
+        <button type="submit" class="btn btn-primary" [disabled]="isLoading"><i class="fa"
+                [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"></i> POST</button>
+    </div>
+
+</form>

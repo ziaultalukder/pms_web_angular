@@ -1,0 +1,124 @@
+<form [formGroup]="salesReportForm">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <input type="date" formControlName="startDate" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <input type="date" formControlName="endDate" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-2 ">
+            <div class="form-group">
+                <button class="btn btn-primary" (click)="ShowReport(salesReportForm.value)">Show</button> |
+
+                <button *ngIf="isVisible"  class="btn btn-info" (click)="DownloadPDF()">Download</button>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<div id="print-section">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">SL</th>
+                <th scope="col">Manufacturer</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Stock Price</th>
+                <th scope="col">Sales Price</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Refund Qty</th>
+                <th scope="col">Sales Date</th>
+                <th scope="col">Total</th>
+                <th scope="col">Profit</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let data of SalesReportList">
+                <td data-label="Name">{{data.sl}}</td>
+                <td data-label="Contact No">{{data.manufacturerName}}</td>
+                <td data-label="Contact No">{{data.brandName}}</td>
+                <td data-label="Total Taka">{{data.stockPrice}}</td>
+                <td data-label="Discount%">{{data.salesPrice}}</td>
+                <td data-label="Discount Taka">{{data.quantity}}</td>
+                <td data-label="Refund Qty">{{data.refundQty}}</td>
+                <td data-label="Date">{{data.createDate | date}}</td>
+                <td data-label="Total Taka">{{data.totalTaka}}</td>
+                <td data-label="Invoice">{{data.reveniue }}</td>
+            </tr>
+            <tr>
+                <td colspan="8" style="font-weight: bold; text-align: right;">Grand Total :</td>
+                <td>{{GrandTotal | number : '1.2-2'}}</td>
+                <td>{{TotalReveniue  | number:'1.2-2' }}</td>
+            </tr>
+            <tr>
+                <!-- <td colspan="7" style="font-weight: bold; text-align: right;">Total Reveniue:</td>
+                <td>{{TotalReveniue}}</td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- style="display: none;" -->
+<div style="display: none;">
+    <div id="contentPDF" #contentPDF>
+        <div class="container">
+            <div class="printInvoice">
+                <div class="row">
+                    <h3><strong>Janani Pharma</strong></h3><br>
+                    <span>
+                        547/2 ECB chottor Cantonment Area
+                    </span><br>
+                    <span>01945-493055 </span><br>
+                    <span>{{currentDate | date:'yyyy-MM-dd h:mm:ss a'}}</span>
+                </div>
+            </div>
+            <!-- <h1>Demo Pharma</h1>
+            <p><strong>Address:</strong> June 30, 2025</p>
+            <p><strong>Contact No:</strong> 01728388751</p>
+            <br> -->
+            <!-- <hr> -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <!-- <th scope="col">SL</th> -->
+                        <th scope="col">Company</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Stock Price</th>
+                        <th scope="col">Sales Price</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Refund Qty</th>
+                        <th scope="col">Sales Date</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Profit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of SalesReportList">
+                        <!-- <td data-label="Name">{{data.sl}}</td> -->
+                        <td data-label="Contact No">{{data.manufacturerName}}</td>
+                        <td data-label="Contact No">{{data.brandName}}</td>
+                        <td data-label="Total Taka">{{data.stockPrice}}</td>
+                        <td data-label="Discount%">{{data.salesPrice}}</td>
+                        <td data-label="Discount Taka">{{data.quantity}}</td>
+                        <td data-label="Grand Total">{{data.refundQty}}</td>
+                        <td data-label="Date">{{data.createDate | date}}</td>
+                        <td data-label="Total Taka">{{data.totalTaka | number : '1.2-2'}}</td>
+                        <td data-label="Invoice">{{data.reveniue | number : '1.2-2'}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" style="font-weight: bold; text-align: right;">Grand Total</td>
+                        <td>{{GrandTotal | number : '1.2-2'}}</td>
+                        <td>{{TotalReveniue | number : '1.2-2'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

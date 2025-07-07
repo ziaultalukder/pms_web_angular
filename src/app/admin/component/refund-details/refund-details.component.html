@@ -1,0 +1,76 @@
+<div class="form-group">
+    <label>Invoice No</label>
+    <input type="text" class="form-control" (keydown.enter)="searchInvoice($event)" />
+</div>
+
+<form [formGroup]="refundForm">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Total Taka</label>
+                <input type="text" class="form-control" readonly formControlName="totalTaka">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>discount</label>
+                <input type="text" class="form-control" readonly formControlName="discountPercentage">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Discount Taka</label>
+                <input type="text" class="form-control" readonly formControlName="discountTaka">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Grand Total</label>
+                <input type="text" class="form-control" readonly formControlName="grandTotal">
+                <!-- [value]="cities.grandTotal" -->
+            </div>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Brand Name</th>
+                <th scope="col">Sales Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Refund Qty</th>
+            </tr>
+        </thead>
+
+        <tbody formArrayName="salesDetailsViewModels" *ngFor="let variants of salesDetails.controls; let i =index">
+            <tr [formGroupName]="i">
+                <td>
+                    <input type="text" class="form-control" formControlName="brandName" readonly>
+                </td>
+                <td>
+                    <input type="text" class="form-control" formControlName="salesPrice" readonly #salesPrice>
+                </td>
+                <td>
+                    <input type="text" class="form-control" formControlName="quantity" readonly #existingQty>
+                </td>
+                <td>
+                    <input type="text" class="form-control" formControlName="totalTaka" readonly>
+                </td>
+                <td>
+                    <input type="number" class="form-control" formControlName="returnqty" #value
+                        (input)="refundQty(value, existingQty, i, salesPrice)" min="0"
+                        oninput="this.value = Math.abs(this.value)">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <div class="form-group">
+        <button type="submit" (click)="saveRefund(refundForm.value)" class="btn btn-primary rounded"
+            [disabled]="isLoading"><i class="fa"
+                [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"></i>Save</button>
+    </div>
+
+</form>

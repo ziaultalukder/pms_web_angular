@@ -1,0 +1,52 @@
+<form [formGroup]="salesListForm">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="date" formControlName="startDate" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="date" formControlName="endDate" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-2 ">
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="ShowReport(salesListForm.value)">Show</button> | 
+        <button class="btn btn-primary" (click)="NewSales()">New Sales</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <!-- <th scope="col">Name</th>
+            <th scope="col">Contact No</th> -->
+            <th scope="col">SL</th>
+            <th scope="col">Total Taka</th>
+            <th scope="col">Discount%</th>
+            <th scope="col">Discount Taka</th>
+            <th scope="col">Grand Total</th>
+            <th scope="col">Invoice</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr *ngFor="let data of salesList; let i = index;">
+            <!-- <td data-label="Name">{{data.customerName}}</td>
+            <td data-label="Contact No">{{data.contactNo}}</td> -->
+            <td data-label="SL">{{i+1}}</td>
+            <td data-label="Total Taka">{{data.totalTaka}}</td>
+            <td data-label="Discount%">{{data.discountPercentage}}</td>
+            <td data-label="Discount Taka">{{data.discountTaka}}</td>
+            <td data-label="Grand Total">{{data.grandTotal}}</td>
+            <td data-label="Invoice">{{data.invoiceNo}}</td>
+            <td data-label="Action">
+              <button class="btn btn-info btn-sm" (click)="viewSalesInDetails(data.id)">Details</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
