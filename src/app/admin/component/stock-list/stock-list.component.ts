@@ -57,7 +57,7 @@ export class StockListComponent implements OnInit{
   }
 
   viewStockInDetails(id: number){
-    alert(id)
+        this.route.navigate(['/admin/stock-details',id]);
   }
 
 }

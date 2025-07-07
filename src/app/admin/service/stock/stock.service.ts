@@ -19,6 +19,11 @@ export class StockService {
     return this.http.get(this.url+'/GetStock?startDate='+startDate+'&endDate='+endDate+' ');
   }
 
+  getStockById(id: any) {
+    return this.http.get(this.url+'/GetStockById?id='+id);
+  }
+
+
   GetStockInfoForRefund(invoiceNo : string) : Observable<any> {
     return this.http.get(this.url + "/GetStockInfoForRefund?invoiceNo=" + invoiceNo);
   }

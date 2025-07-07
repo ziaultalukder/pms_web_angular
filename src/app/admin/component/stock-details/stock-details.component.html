@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-header">
+    <h3>Sales Details</h3>
+  </div>
+  <div class="card-body">
+    <span><strong>Invoice:</strong> {{stockDetails.invoice}} </span> <br>
+    <span><strong>Stock Date :</strong> {{stockDetails.createDate | date : 'medium'}} </span> <br>
+    <span><strong>Discount % :</strong> {{stockDetails.discountPercentage}} </span> <br>
+    <span><strong>Discount Taka :</strong> {{stockDetails.discountValue}} </span> <br>
+    <span><strong>Total Taka :</strong> {{stockDetails.totalPrice}} </span> <br>
+    <span><strong>Grand Total :</strong> {{stockDetails.grandTotal}} </span> <br>
+    <span><strong>Refundable :</strong> {{stockDetails.isRefundable}} </span> <br>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">SL</th>
+        <th scope="col">manufacturerName</th>
+        <th scope="col">brandName</th>
+        <th scope="col">quantity</th>
+        <th scope="col">refundQty</th>
+        <th scope="col">salesPrice</th>
+        <th scope="col">Purchase Price</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let data of stockDetails.stockInDetails; let i = index;">
+        <td data-label="SL">{{i+1}}</td>
+        <td data-label="manufacturerName">{{data.manufacturerName}}</td>
+        <td data-label="brandName">{{data.brandName}}</td>
+        <td data-label="quantity">{{data.newQty}}</td>
+        <td data-label="refundQty">{{data.refundQty}}</td>
+        <td data-label="salesPrice">{{data.salesPrice}}</td>
+        <td data-label="Purchase Price">{{data.pruchasePrice}}</td>
+
+      </tr>
+    </tbody>
+  </table>
+  <div class="card-footer text-body-secondary">
+    <button class="btn btn-info btn-sm" (click)="salesList()">Sales List</button>
+  </div>
+</div>

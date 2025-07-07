@@ -37,6 +37,7 @@ import { ItemListComponent } from './component/item-list/item-list.component';
 import { SupplierListComponent } from './component/supplier-list/supplier-list.component';
 import { AddSupplierComponent } from './component/add-supplier/add-supplier.component';
 import { StockRefundComponent } from './component/stock-refund/stock-refund.component';
+import { StockDetailsComponent } from './component/stock-details/stock-details.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { StockRefundComponent } from './component/stock-refund/stock-refund.comp
     SupplierListComponent,
     AddSupplierComponent,
     StockRefundComponent,
+    StockDetailsComponent,
 
   ],
   imports: [

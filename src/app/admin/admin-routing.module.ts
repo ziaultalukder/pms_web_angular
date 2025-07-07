@@ -22,6 +22,7 @@ import { UpdateMedicineComponent } from './component/update-medicine/update-medi
 import { SupplierListComponent } from './component/supplier-list/supplier-list.component';
 import { AddSupplierComponent } from './component/add-supplier/add-supplier.component';
 import { StockRefundComponent } from './component/stock-refund/stock-refund.component';
+import { StockDetailsComponent } from './component/stock-details/stock-details.component';
 
 const routes: Routes = [
   {path: '', component:AdminComponent, 
@@ -45,6 +46,7 @@ const routes: Routes = [
       {path: 'update-medicine/:id', component: UpdateMedicineComponent},
       {path: 'refund-details', component: RefundDetailsComponent},
       {path: 'sales-details/:id', component:SalesDetailsComponent},
+      {path: 'stock-details/:id', component:StockDetailsComponent},
       {path: 'reports', component: ReportComponent},
       {path: '', redirectTo:'/admin/medicine', pathMatch:'full'},
       {path: '**', component:NotFoundComponent},
