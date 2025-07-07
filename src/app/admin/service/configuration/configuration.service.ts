@@ -19,9 +19,11 @@ export class ConfigurationService {
     return this.http.get(this.url + "/ClientWiseMedicine?medicineName="+name);
   }
 
-
   GetSupplier() {
     return this.http.get(this.url + "/GetSupplier?getAll=y&currentPage=0&itemsPerPage=10");
+  }
+  GetSupplierForEdit() {
+    return this.http.get(this.url + "/GetSupplier?getAll=y&isItemEdit=y");
   }
 
   GetSupplierByName(name: string) {

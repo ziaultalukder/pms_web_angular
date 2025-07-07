@@ -32,7 +32,7 @@ export class UpdateMedicineComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id')
-    this.configurationService.GetSupplier().subscribe(c => { this.cities = c; })
+    this.configurationService.GetSupplierForEdit().subscribe(c => { this.cities = c; })
     this.configurationService.GetUserUploadItemById(id).subscribe(c => {
       this.itemDetails = c;
       for (let i of c) {
