@@ -48,7 +48,7 @@ const routes: Routes = [
       {path: 'sales-details/:id', component:SalesDetailsComponent},
       {path: 'stock-details/:id', component:StockDetailsComponent},
       {path: 'reports', component: ReportComponent},
-      {path: '', redirectTo:'/admin/medicine', pathMatch:'full'},
+      {path: '', redirectTo:'/admin/dashboard', pathMatch:'full'},
       {path: '**', component:NotFoundComponent},
     ]
   }

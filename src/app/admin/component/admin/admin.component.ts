@@ -30,6 +30,13 @@ export class AdminComponent implements OnInit {
   
   menus: Menu[] = [
     { 
+      name: 'Dashboard',
+      iconClass: 'fa fa-dashboard',
+      active: false,
+      url:'dashboard',
+      submenu: []
+    },
+    { 
       name: 'Medicine List',
       iconClass: 'fa fa-medkit',
       active: false,
