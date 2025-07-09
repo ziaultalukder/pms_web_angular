@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SalesService } from '../../service/sales/sales.service';
 
 
 @Component({
@@ -6,6 +7,20 @@ import { Component } from '@angular/core';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
+  
+  /**
+   *
+   */
+  TodayMonthlyAndYearlySalesReport: any
+  constructor(private salesService: SalesService) {
+    
+  }
+
+  ngOnInit(): void {
+    this.salesService.TodayMonthlyAndYearlySalesReport().subscribe(c=>{
+      this.TodayMonthlyAndYearlySalesReport = c;
+    })
+  }
   
 }

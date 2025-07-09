@@ -1,15 +1,15 @@
 <!-- <h1>Welcome To Dashboard</h1> -->
 <div class="card">
-    
+
     <div class="card-single bg-dark  ">
         <div class="card-flex">
             <div class="card-info">
                 <div class="card-head">
                     <span>TODAY SALE</span>
-                    <small>Number of Purchases</small>
+                    <small></small>
                 </div>
-                <h2>$ 17,663</h2>
-                <small>2% Less Purchase</small>
+                <h2>{{TodayMonthlyAndYearlySalesReport.today}} TK</h2>
+                <small></small>
             </div>
             <div class="card-chart">
                 <span class="las la-chart-line"></span>
@@ -22,13 +22,29 @@
             <div class="card-info">
                 <div class="card-head">
                     <span>MONTHLY SALE</span>
-                    <small>Number of Purchases</small>
+                    <small></small>
                 </div>
-                <h2>$ 17,663</h2>
-                <small>2% Less Purchase</small>
+                <h2>{{TodayMonthlyAndYearlySalesReport.monthly}} TK</h2>
+                <small></small>
             </div>
             <div class="card-chart">
                 <span class="las la-chart-line"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-single bg-success ">
+        <div class="card-flex">
+            <div class="card-info">
+                <div class="card-head">
+                    <span>YEARLY SALE</span>
+                    <small></small>
+                </div>
+                <h2>{{TodayMonthlyAndYearlySalesReport.yearly}} TK</h2>
+                <small></small>
+            </div>
+            <div class="card-chart">
+                <span class="la la-chart-line"></span>
             </div>
         </div>
     </div>
@@ -38,32 +54,14 @@
             <div class="card-info">
                 <div class="card-head">
                     <span>TOTAL STOCK MEDICINE</span>
-                    <small>Number of Purchases</small>
+                    <small></small>
                 </div>
-                <h2>17,663</h2>
-                <small>2% Less Purchase</small>
+                <h2>{{TodayMonthlyAndYearlySalesReport.totalStock}} TK</h2>
+                <small></small>
             </div>
             <div class="card-chart">
                 <span class="la la-chart-line"></span>
             </div>
         </div>
     </div>
-    
-    <div class="card-single bg-success ">
-        <div class="card-flex">
-            <div class="card-info">
-                <div class="card-head">
-                    <span>LIFETIME SALE</span>
-                    <small>Number of Purchases</small>
-                </div>
-                <h2>17,663</h2>
-                <small>2% Less Purchase</small>
-            </div>
-            <div class="card-chart">
-                <span class="la la-chart-line"></span>
-            </div>
-        </div>
-    </div>
-
 </div>
-

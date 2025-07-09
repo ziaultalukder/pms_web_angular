@@ -1,8 +1,8 @@
 .card{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 3rem;
-    margin-top: 2rem;
+    grid-gap: 2rem;
+    margin-top: 0rem;
     background: #f9f9f9;
     border: 0px;
 }

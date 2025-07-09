@@ -31,6 +31,9 @@ export class SalesService {
   GetSalesInfoForRefund(invoiceNo: string): Observable<any> {
     return this.http.get(this.url + "/GetSalesInfoForRefund?invoiceNo=" + invoiceNo);
   }
+  TodayMonthlyAndYearlySalesReport(){
+    return this.http.get(this.url + "/TodayMonthlyAndYearlySalesReport");
+  }
 
   GetSalesDetailsById(id: any): Observable<any> {
     return this.http.get(this.url + "/GetSalesDetailsById?id=" + id);
