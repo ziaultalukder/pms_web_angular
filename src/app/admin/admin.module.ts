@@ -38,6 +38,7 @@ import { SupplierListComponent } from './component/supplier-list/supplier-list.c
 import { AddSupplierComponent } from './component/add-supplier/add-supplier.component';
 import { StockRefundComponent } from './component/stock-refund/stock-refund.component';
 import { StockDetailsComponent } from './component/stock-details/stock-details.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,7 @@ import { StockDetailsComponent } from './component/stock-details/stock-details.c
     NgSelectModule,
     FormsModule,
     NgxPrintModule,
-    
+    NgChartsModule
   ],
   providers:[
     ConfigurationService, StockService, SalesService,AccountService,

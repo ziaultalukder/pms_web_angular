@@ -15,7 +15,6 @@ export class SalesService {
     return this.http.get(this.url + "/GetClientWiseMedicineForSales?medicineName=" + medicineName);
   }
 
-
   InsertSalesInfo(data: any): Observable<any> {
     return this.http.post<any>(this.url + '/NewSales', data);
   }
@@ -33,6 +32,14 @@ export class SalesService {
   }
   TodayMonthlyAndYearlySalesReport(){
     return this.http.get(this.url + "/TodayMonthlyAndYearlySalesReport");
+  }
+
+  WeeklyChartSalesReport(){
+    return this.http.get(this.url + "/WeeklyChartSalesReport");
+  }
+
+  WeeklyTopSalesMedicineReport(){
+    return this.http.get(this.url + "/WeeklyTopSalesMedicineReport");
   }
 
   GetSalesDetailsById(id: any): Observable<any> {

@@ -11,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+
     ToastrModule.forRoot({
       positionClass: 'toast-top-right'
     })
