@@ -1,5 +1,5 @@
 <!-- <h1>Welcome To Dashboard</h1> -->
-<div class="card">
+<div class="card-for-board">
 
     <div class="card-single bg-dark  ">
         <div class="card-flex">
@@ -71,9 +71,21 @@
     <div class="col-md-8">
         <canvas baseChart type="bar" [data]="lineChartData" [options]="barChartOptions"> </canvas>
     </div>
-    <div class="col-md-4"></div>
-</div>
+    <div class="col-md-4">
 
-<!-- <canvas baseChart type="bar" [data] = "data12" > </canvas> -->
-<!-- <canvas baseChart [data]="lineChartData" [options]="barChartOptions" [type]="'bar'"> </canvas> -->
- <hr>
+        <div class="card">
+            <h5 class="card-header">
+                <select (change)="onSelectionChange($event)" class="form-control">
+                    <option *ngFor="let item of items" [value]="item.id">{{ item.name }}</option>
+                </select>
+            </h5>
+            <div class="card-body">
+                  <ul class="list-group list-group-flush" *ngFor="let med of medList">
+                    <li class="list-group-item">{{med.topRank}} | {{med.brandName}} | {{med.grandTotal}} | {{med.manufacturerName}}</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<hr>

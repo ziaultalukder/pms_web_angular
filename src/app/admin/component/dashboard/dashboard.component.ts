@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AbstractType, Component, OnInit } from '@angular/core';
 import { SalesService } from '../../service/sales/sales.service';
 import { ChartConfiguration, ChartData } from 'chart.js';
 
@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit {
   chartdata: any
   chartLabels: any[] = []
   chartValue: any[] = []
+  value:number = 1;
+  medList:any
   constructor(private salesService: SalesService) {
 
   }
@@ -37,6 +39,25 @@ export class DashboardComponent implements OnInit {
         this.loadData(this.chartLabels, this.chartValue);
       }
 
+    })
+
+    this.salesService.WeeklyTopSalesMedicineReport(this.value).subscribe(option=>{
+      this.medList = option;
+    })
+
+  }
+
+  items = [
+    { id: 1, name: 'Daily' },
+    { id: 2, name: 'Weekly' },
+    { id: 3, name: 'Monthly' },
+  ];
+
+    //selectedValue: string = ''; // Initialize with an empty string or default value
+
+  onSelectionChange(eventValue: any) {
+    this.salesService.WeeklyTopSalesMedicineReport(eventValue.target.value).subscribe(option=>{
+      this.medList = option;
     })
 
   }
@@ -83,6 +104,12 @@ export class DashboardComponent implements OnInit {
       labels: newData.labels,
       datasets: newData.datasets
     }
+  }
+
+
+  selectedValue(event:any){
+    console.log(event.value);
+    
   }
 
 

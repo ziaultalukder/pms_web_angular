@@ -38,8 +38,8 @@ export class SalesService {
     return this.http.get(this.url + "/WeeklyChartSalesReport");
   }
 
-  WeeklyTopSalesMedicineReport(){
-    return this.http.get(this.url + "/WeeklyTopSalesMedicineReport");
+  WeeklyTopSalesMedicineReport(value:number){
+    return this.http.get(this.url + "/WeeklyTopSalesMedicineReport?value="+value);
   }
 
   GetSalesDetailsById(id: any): Observable<any> {
