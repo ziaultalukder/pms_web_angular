@@ -37,6 +37,7 @@
                 <th scope="col">Brand Name</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Sales Price</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Refund Qty</th>
             </tr>
         </thead>
@@ -68,7 +69,7 @@
     <div class="form-group">
         <button type="submit" (click)="saveRefund(refundForm.value)" class="btn btn-primary rounded"
             [disabled]="isLoading"><i class="fa"
-                [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"></i>Save</button>
+                [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"></i>Refund</button>
     </div>
 
 </form>

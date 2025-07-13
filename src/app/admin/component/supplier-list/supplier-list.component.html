@@ -23,7 +23,7 @@
                 <tr *ngFor="let med of supplierList; let i = index">
                     <td data-label="SL">{{i+1}}</td>
                     <td data-label="Manufacturer Name">{{med.name}}</td>
-                    <td data-label="Action">
+                    <td data-label="Action" *ngIf="med.isUploadUser == 'Y' ">
                         <button class="btn btn-primary btn-sm" (click)="updateSupplier(med.id)">Update</button>
                     </td>
                 </tr>

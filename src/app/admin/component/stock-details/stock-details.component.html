@@ -9,7 +9,7 @@
     <span><strong>Discount Taka :</strong> {{stockDetails.discountValue}} </span> <br>
     <span><strong>Total Taka :</strong> {{stockDetails.totalPrice}} </span> <br>
     <span><strong>Grand Total :</strong> {{stockDetails.grandTotal}} </span> <br>
-    <span><strong>Refundable :</strong> {{stockDetails.isRefundable}} </span> <br>
+    <span><strong>Refundable :</strong> {{stockDetails.isRefundable == "Y" ? "Yes" : "No"}} </span> <br>
   </div>
 
   <table>
@@ -39,6 +39,6 @@
     </tbody>
   </table>
   <div class="card-footer text-body-secondary">
-    <button class="btn btn-info btn-sm" (click)="salesList()">Sales List</button>
+    <button class="btn btn-info btn-sm" (click)="salesList()">Stock List</button>
   </div>
 </div>

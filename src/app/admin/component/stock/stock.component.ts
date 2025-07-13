@@ -225,6 +225,7 @@ export class StockComponent implements OnInit, AfterViewInit {
           this.route.navigate(['/admin/stock-list']);
         } else {
           this.toast.error('Wrong!', option.errors[0]);
+          this.isLoading = false;
         }
       })
 

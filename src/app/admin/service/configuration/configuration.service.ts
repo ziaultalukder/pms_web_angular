@@ -66,6 +66,10 @@ export class ConfigurationService {
     return this.http.post<any>(this.url + '/AddOrEditSupplier', data);
   }
 
+  getSupplierById(id: any): Observable<any> {
+    return this.http.get<any>(this.url + '/GetSupplier?id='+id);
+  }
+
   GetUserUploadItemById(id: any): Observable<any> {
     return this.http.get<any>(this.url + '/GetUserUploadItem?id='+id);
   }

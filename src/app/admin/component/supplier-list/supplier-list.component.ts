@@ -28,7 +28,7 @@ export class SupplierListComponent implements OnInit {
   }
 
   updateSupplier(id: number){
-
+    this.route.navigate(['admin/update-supplier', id])
   }
 
   onInput(event: Event): void {

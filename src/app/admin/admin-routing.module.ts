@@ -23,6 +23,7 @@ import { SupplierListComponent } from './component/supplier-list/supplier-list.c
 import { AddSupplierComponent } from './component/add-supplier/add-supplier.component';
 import { StockRefundComponent } from './component/stock-refund/stock-refund.component';
 import { StockDetailsComponent } from './component/stock-details/stock-details.component';
+import { UpdateSupplierComponent } from './component/update-supplier/update-supplier.component';
 
 const routes: Routes = [
   {path: '', component:AdminComponent, 
@@ -44,6 +45,7 @@ const routes: Routes = [
       {path: 'item-list', component: ItemListComponent},
       {path: 'add-medicine', component: AddMedicineComponent},
       {path: 'update-medicine/:id', component: UpdateMedicineComponent},
+      {path: 'update-supplier/:id', component: UpdateSupplierComponent},
       {path: 'refund-details', component: RefundDetailsComponent},
       {path: 'sales-details/:id', component:SalesDetailsComponent},
       {path: 'stock-details/:id', component:StockDetailsComponent},

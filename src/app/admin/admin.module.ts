@@ -39,6 +39,7 @@ import { AddSupplierComponent } from './component/add-supplier/add-supplier.comp
 import { StockRefundComponent } from './component/stock-refund/stock-refund.component';
 import { StockDetailsComponent } from './component/stock-details/stock-details.component';
 import { NgChartsModule } from 'ng2-charts';
+import { UpdateSupplierComponent } from './component/update-supplier/update-supplier.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { NgChartsModule } from 'ng2-charts';
     AddSupplierComponent,
     StockRefundComponent,
     StockDetailsComponent,
+    UpdateSupplierComponent,
 
   ],
   imports: [
