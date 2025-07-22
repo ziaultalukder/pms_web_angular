@@ -21,6 +21,7 @@ export class ReportComponent {
   TotalReveniue: number;
   GrandTotal: number;
   isVisible = false;
+  isLoading = false;
   @ViewChild('contentPDF', { static: false }) el!: ElementRef;
 
   constructor(private salesService: SalesService, private formBuilder: FormBuilder, private jsPDFService: JspdfService) {
@@ -48,11 +49,12 @@ export class ReportComponent {
 
   ShowReport(data: any) {
     this.isVisible = true;
+    this.isLoading = true;
     this.salesService.salesReport(data.startDate, data.endDate).subscribe(
       c => {
         this.SalesReportList = c;
         this.getTotalReveniue();
-        
+        this.isLoading = false;
       }
     )
   }
@@ -71,10 +73,13 @@ export class ReportComponent {
   }
 
   DownloadPDF() {
+    this.isLoading = true;
     this.jsPDFService.generatePdf(
       this.el.nativeElement,
       'repo'+new Date().getDate()
     );
+
+    this.isLoading = false
   }
 
   DownloadPDFTest() {
