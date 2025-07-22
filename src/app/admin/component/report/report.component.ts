@@ -22,6 +22,8 @@ export class ReportComponent {
   GrandTotal: number;
   isVisible = false;
   isLoading = false;
+  isLoadingForDownload = false
+
   @ViewChild('contentPDF', { static: false }) el!: ElementRef;
 
   constructor(private salesService: SalesService, private formBuilder: FormBuilder, private jsPDFService: JspdfService) {
@@ -73,13 +75,13 @@ export class ReportComponent {
   }
 
   DownloadPDF() {
-    this.isLoading = true;
+    this.isLoadingForDownload = true;
     this.jsPDFService.generatePdf(
       this.el.nativeElement,
       'repo'+new Date().getDate()
     );
 
-    this.isLoading = false
+    this.isLoadingForDownload = false
   }
 
   DownloadPDFTest() {

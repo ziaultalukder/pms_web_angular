@@ -15,8 +15,8 @@
                 <button class="btn btn-primary" (click)="ShowReport(salesReportForm.value)" [disabled]="isLoading"><i class="fa"
             [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}" > </i>Show </button> |
 
-                <button *ngIf="isVisible"  class="btn btn-info" (click)="DownloadPDF()" [disabled]="isLoading"><i class="fa"
-            [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}" > </i> Download</button>
+                <button *ngIf="isVisible"  class="btn btn-info" (click)="DownloadPDF()" [disabled]="isLoadingForDownload"><i class="fa"
+            [ngClass]="{'fa-spin fa-spinner': isLoadingForDownload, 'fa-check': !isLoadingForDownload}" > </i> Download</button>
 
             </div>
         </div>
