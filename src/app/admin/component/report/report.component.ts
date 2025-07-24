@@ -18,6 +18,7 @@ export class ReportComponent {
   startDate = this.formatDate(new Date())
   endDate = this.formatDate(new Date())
   SalesReportList: any;
+  QuantityWiseSalesReport: any;
   TotalReveniue: number;
   GrandTotal: number;
   isVisible = false;
@@ -31,6 +32,10 @@ export class ReportComponent {
   }
 
 
+  salesReportForm1 = this.formBuilder.group({
+    startDate: [this.startDate],
+    endDate: [this.endDate]
+  })
 
   salesReportForm = this.formBuilder.group({
     startDate: [this.startDate],
@@ -84,7 +89,15 @@ export class ReportComponent {
     this.isLoadingForDownload = false
   }
 
-  DownloadPDFTest() {
-
+  ShowReport1(data: any){
+    this.isVisible = true;
+    this.isLoading = true;
+    this.salesService.QuantityWiseSalesReport(data.startDate, data.endDate).subscribe(
+      c => {
+        this.QuantityWiseSalesReport = c;
+        // this.getTotalReveniue();
+        this.isLoading = false;
+      }
+    )
   }
 }

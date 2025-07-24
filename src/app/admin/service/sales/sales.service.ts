@@ -27,6 +27,10 @@ export class SalesService {
     return this.http.get(this.url + '/SalesReport?startDate=' + startDate + '&endDate=' + endDate + '&currentPage=0&itemsPerPage=1000');
   }
 
+  QuantityWiseSalesReport(startDate: string, endDate: string) {
+    return this.http.get(this.url + '/QuantityWiseSalesReport?startDate='+startDate+' &endDate='+endDate+' ');
+  }
+
   GetSalesInfoForRefund(invoiceNo: string): Observable<any> {
     return this.http.get(this.url + "/GetSalesInfoForRefund?invoiceNo=" + invoiceNo);
   }
