@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -23,8 +23,10 @@ export class SalesService {
     return this.http.get(this.url + '/GetSales?startDate=' + startDate + '&endDate=' + endDate + '&currentPage=0&itemsPerPage=1000 ');
   }
 
-  salesReport(startDate: string, endDate: string) {
-    return this.http.get(this.url + '/SalesReport?startDate=' + startDate + '&endDate=' + endDate + '&currentPage=0&itemsPerPage=1000');
+  salesReport(startDate: string, endDate: string, currentPage: number, itemsPerPage: number) : Observable<HttpResponse<any>> {
+    return this.http.get<any>(this.url + '/SalesReport?startDate=' + startDate + '&endDate=' + endDate + '&currentPage='+currentPage+'&itemsPerPage='+itemsPerPage+' ', {
+      observe: 'response'
+    })
   }
 
   QuantityWiseSalesReport(startDate: string, endDate: string) {
