@@ -22,7 +22,7 @@
                                 [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"> </i>Show
                         </button> |
 
-                        <button *ngIf="isVisible" class="btn btn-info" (click)="DownloadPDF()"
+                        <button *ngIf="isVisible" class="btn btn-info" (click)="DownloadPDF(salesReportForm.value)"
                             [disabled]="isLoadingForDownload"><i class="fa"
                                 [ngClass]="{'fa-spin fa-spinner': isLoadingForDownload, 'fa-check': !isLoadingForDownload}">
                             </i> Download</button>
@@ -49,7 +49,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr *ngFor="let data of SalesReportList">
                         <td data-label="Name">{{data.sl}}</td>
                         <td data-label="Contact No">{{data.manufacturerName}}</td>
@@ -62,33 +61,26 @@
                         <td data-label="Total Taka">{{data.totalTaka}}</td>
                         <td data-label="Invoice">{{data.reveniue }}</td>
                     </tr>
-                    <tr>
-                        <td colspan="8" style="font-weight: bold; text-align: right;">Grand Total :</td>
-                        <td>{{GrandTotal | number : '1.2-2'}}</td>
-                        <td>{{TotalReveniue | number:'1.2-2' }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td colspan="7" style="font-weight: bold; text-align: right;">Total Reveniue:</td>
-                <td>{{TotalReveniue}}</td> -->
-                    </tr>
                 </tbody>
             </table>
         </div>
         <nav aria-label="...">
             <ul class="pagination">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
                 
+                <li class="page-item" [ngClass]="currentPage == 1 ? 'disabled' : 'active' ">
+                    <a class="page-link cursor" (click)="previous()">Previous</a>
+                </li>
+
                 <div *ngFor="let d of numbers; ">
                     <li class="page-item" [ngClass]="currentPage == d ? 'active' : '' ">
                         <a class="page-link" href="#">{{d}}</a>
                     </li>
                 </div>
-                
-                <li class="page-item">
-                    <a class="page-link" (click)="next()">Next</a>
+
+                <li class="page-item" [ngClass]="currentPage == numbers.length ? 'disabled' : 'active' ">
+                    <a class="page-link cursor" (click)="next()">Next</a>
                 </li>
+
             </ul>
         </nav>
     </div>
@@ -186,7 +178,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let data of SalesReportList">
+                    <tr *ngFor="let data of DownloadSalesReportList">
                         <!-- <td data-label="Name">{{data.sl}}</td> -->
                         <td data-label="Contact No">{{data.manufacturerName}}</td>
                         <td data-label="Contact No">{{data.brandName}}</td>

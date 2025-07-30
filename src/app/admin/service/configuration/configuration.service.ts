@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,8 +11,10 @@ export class ConfigurationService {
   constructor(private http: HttpClient) { }
   private readonly url = environment.url + "/Configuration";
 
-  GetClientWiseMedicine() {
-    return this.http.get(this.url + "/ClientWiseMedicine?getAll=y&currentPage=0&itemsPerPage=100");
+  GetClientWiseMedicine(currentPage: number, itemsPerPage: number) : Observable<HttpResponse<any>> {
+    return this.http.get(this.url + "/ClientWiseMedicine?getAll=y&currentPage="+currentPage+" &itemsPerPage="+itemsPerPage+" ", {
+      observe: 'response'
+    });
   }
 
   GetClientWiseMedicineByName(name: string) {

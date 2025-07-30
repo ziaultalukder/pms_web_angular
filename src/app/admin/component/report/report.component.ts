@@ -20,11 +20,12 @@ export class ReportComponent {
   totalPages: number = 0;
   totalItems: number = 0;
   numbers: number[] = [];
-
+  count = 0;
   currentDate: Date = new Date();
   startDate = this.formatDate(new Date())
   endDate = this.formatDate(new Date())
   SalesReportList: any;
+  DownloadSalesReportList: any;
   QuantityWiseSalesReport: any;
   TotalReveniue: number;
   GrandTotal: number;
@@ -62,21 +63,31 @@ export class ReportComponent {
   }
 
   ShowReport(data: any) {
+
+    this.DownloadSalesReportList = null;
+    this.SalesReportList = null;
+    this.numbers = [];
+
     this.isVisible = true;
     this.isLoading = true;
+
+    this.salesService.downloadSalesReport(data.startDate, data.endDate)
+      .subscribe(
+        c => {
+          this.DownloadSalesReportList = c;
+          this.getTotalReveniue();
+          this.isLoading = false;
+        }
+      )
 
     this.salesService.salesReport(data.startDate, data.endDate, this.currentPage, this.itemsPerPage)
       .subscribe(c => {
         this.SalesReportList = c.body;
-
         var token = JSON.parse(c.headers.get('Pagination') || '');
         this.currentPage = token.currentPage;
         this.itemsPerPage = token.itemsPerPage;
         this.totalPages = token.totalPages;
         this.totalItems = token.totalItems;
-
-        this.getTotalReveniue();
-
         for (let i = 1; i <= token.totalPages; i++) {
           this.numbers.push(i);
         }
@@ -86,25 +97,24 @@ export class ReportComponent {
   }
 
   getTotalReveniue() {
-    this.TotalReveniue = this.SalesReportList.reduce((sum: number, item: any) => {
+    this.TotalReveniue = this.DownloadSalesReportList.reduce((sum: number, item: any) => {
       const value = Number(item?.reveniue);
       return sum + (isNaN(value) ? 0 : value);
     }, 0);
 
 
-    this.GrandTotal = this.SalesReportList.reduce((sum: number, item: any) => {
+    this.GrandTotal = this.DownloadSalesReportList.reduce((sum: number, item: any) => {
       const value = Number(item?.totalTaka);
       return sum + (isNaN(value) ? 0 : value);
     }, 0);
   }
 
-  DownloadPDF() {
+  DownloadPDF(data: any) {
     this.isLoadingForDownload = true;
     this.jsPDFService.generatePdf(
       this.el.nativeElement,
       'repo' + new Date().getDate()
     );
-
     this.isLoadingForDownload = false
   }
 
@@ -123,15 +133,24 @@ export class ReportComponent {
   next() {
     this.currentPage++
     const formData = this.salesReportForm.value
-    
-    console.log(formData)
-
     this.salesService.salesReport(formData.startDate || '', formData.endDate || '', this.currentPage, this.itemsPerPage)
       .subscribe(c => {
         this.SalesReportList = c.body;
         this.getTotalReveniue();
         this.isLoading = false;
       }
-    )
+      )
+  }
+
+  previous() {
+    this.currentPage--
+    const formData = this.salesReportForm.value
+    this.salesService.salesReport(formData.startDate || '', formData.endDate || '', this.currentPage, this.itemsPerPage)
+      .subscribe(c => {
+        this.SalesReportList = c.body;
+        this.getTotalReveniue();
+        this.isLoading = false;
+      }
+      )
   }
 }

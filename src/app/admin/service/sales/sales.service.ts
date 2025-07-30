@@ -29,6 +29,10 @@ export class SalesService {
     })
   }
 
+  downloadSalesReport(startDate: string, endDate: string,){
+    return this.http.get(this.url + '/DownloadSalesReport?startDate=' + startDate + '&endDate=' + endDate + ' ');
+  }
+
   QuantityWiseSalesReport(startDate: string, endDate: string) {
     return this.http.get(this.url + '/QuantityWiseSalesReport?startDate='+startDate+' &endDate='+endDate+' ');
   }
