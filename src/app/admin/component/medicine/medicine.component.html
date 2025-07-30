@@ -32,25 +32,25 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="card-footer">
 
-    <nav aria-label="...">
-            <ul class="pagination">
-                
-                <li class="page-item" [ngClass]="currentPage == 1 ? 'disabled' : 'active' ">
-                    <a class="page-link cursor" (click)="previous()">Previous</a>
-                </li>
+    <ul class="pagination">
 
-                <div *ngFor="let d of numbers; ">
-                    <li class="page-item" [ngClass]="currentPage == d ? 'active' : '' ">
-                        <a class="page-link" href="#">{{d}}</a>
-                    </li>
-                </div>
+      <li class="page-item" [ngClass]="currentPage == 1 ? 'disabled' : 'active' ">
+        <a class="page-link cursor" (click)="previous()">Previous</a>
+      </li>
 
-                <li class="page-item" [ngClass]="currentPage == numbers.length ? 'disabled' : 'active' ">
-                    <a class="page-link cursor" (click)="next()">Next</a>
-                </li>
+      <div *ngFor="let d of numbers; ">
+        <li class="page-item" [ngClass]="currentPage == d ? 'active' : '' ">
+          <a class="page-link">{{d}}</a>
+        </li>
+      </div>
 
-            </ul>
-        </nav>
+      <li class="page-item" [ngClass]="currentPage == numbers.length ? 'disabled' : 'active' ">
+        <a class="page-link cursor" (click)="next()">Next</a>
+      </li>
+
+    </ul>
   </div>
 </div>
