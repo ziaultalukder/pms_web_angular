@@ -16,8 +16,8 @@ export class PostComponent implements OnInit{
 
 
   postList: any
-  //imageUrl = "http://localhost:5276/"
-  imageUrl = "https://pharmacy2025-001-site1.ltempurl.com/"
+  imageUrl = "http://localhost:5276/"
+  
   constructor(private postService: PostService, private route: Router, private title: Title) {
     
   }
