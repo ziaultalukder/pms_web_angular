@@ -31,8 +31,7 @@ export class EditPostComponent implements OnInit {
   ExistingFeaturedImage: string = '';
   ExistingPostImage: string = '';
 
-  // imageUrl = "http://localhost:5276"
-  imageUrl = "https://pharmacy2025-001-site1.ltempurl.com/"
+  imageUrl = "http://localhost:5276"
 
   constructor(
     private formBuilder: FormBuilder,

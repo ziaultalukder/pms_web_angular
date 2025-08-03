@@ -16,7 +16,7 @@
             <td data-label="Title">{{med.title}}</td>
             <td data-label="Description" [innerHTML]="med.description | slice: 0: 80"></td>
             <td data-label="Thumbnail">
-                <img src="{{imageUrl}}{{med.featuredImage}}" width="150">
+                <img src="{{imageUrl+med.featuredImage}}" width="150">
             </td>
             <td data-label="Image">
                 <img src="{{imageUrl}}{{med.image}}" width="200">
