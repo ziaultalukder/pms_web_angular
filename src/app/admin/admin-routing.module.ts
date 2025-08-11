@@ -4,7 +4,6 @@ import { AdminComponent } from './component/admin/admin.component';
 import { UserRegistrationComponent } from './component/user-registration/user-registration.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
-import { ClientComponent } from './component/client/client.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { StockComponent } from './component/stock/stock.component';
 import { SalesComponent } from './component/sales/sales.component';
@@ -30,7 +29,6 @@ const routes: Routes = [
     children:[
       {path: 'dashboard', component: DashboardComponent},
       {path: 'user-registration', component: UserRegistrationComponent},
-      {path: 'client', component: ClientComponent},
       {path: 'supplier-list', component: SupplierListComponent},
       {path: 'add-supplier', component: AddSupplierComponent},
       {path: 'medicine', component: MedicineComponent},

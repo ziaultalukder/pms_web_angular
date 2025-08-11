@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthInterceptor } from '../guards/auth.interceptor';
-import { ClientComponent } from './component/client/client.component';
 import { MedicineComponent } from './component/medicine/medicine.component';
 import { StockComponent } from './component/stock/stock.component';
 import { SalesComponent } from './component/sales/sales.component';
@@ -47,7 +46,6 @@ import { UpdateSupplierComponent } from './component/update-supplier/update-supp
     UserRegistrationComponent,
     NotFoundComponent,
     DashboardComponent,
-    ClientComponent,
     MedicineComponent,
     StockComponent,
     SalesComponent,
