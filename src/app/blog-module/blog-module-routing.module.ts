@@ -7,12 +7,18 @@ import { NotfoudComponent } from './component/notfoud/notfoud.component';
 import { NewPostComponent } from './component/new-post/new-post.component';
 import { EditPostComponent } from './component/edit-post/edit-post.component';
 import { PostDetailsComponent } from './component/post-details/post-details.component';
+import { ClientComponent } from './component/client/client.component';
+import { UpdateClientComponent } from './component/update-client/update-client.component';
+import { AddClientComponent } from './component/add-client/add-client.component';
 
 const routes: Routes = [
   {
     path: '', component: BlogComponent, children: [
       {path: 'post', component: PostComponent},
       {path: 'category', component: CategoryComponent},
+      {path: 'client', component: ClientComponent},
+      {path: 'add-client', component: AddClientComponent},
+      {path: 'update-client/:id', component: UpdateClientComponent},
       {path: 'new-post', component: NewPostComponent},
       {path: 'edit-post/:id', component: EditPostComponent},
       {path: 'details/:id/:seoTitle', component: PostDetailsComponent},

@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <h3>Client List</h3>
+      <!-- <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="search item" (input)="onInput($event)">
+      </div> -->
+    </div>
+
+  </div>
+  <div class="card-body">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Shop Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Contact No</th>
+          <th scope="col">Email</th>
+          <th scope="col">Is Active</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Subscription Plan</th>
+          <th scope="col">Price</th>
+          <th scope="col">Billing Cycle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let med of clientList">
+          <td data-label="Name">{{med.name}}</td>
+          <td data-label="Shop Name">{{med.shopName}}</td>
+          <td data-label="Address">{{med.address}}</td>
+          <td data-label="Contact No">{{med.contactNo}}</td>
+          <td data-label="Email">{{med.email}}</td>
+          <td data-label="Is Active">{{med.isActive}}</td>
+          <td data-label="Start Date">{{med.startDate | date: 'dd/MM/yyyy'}}</td>
+          <td data-label="End Date">{{med.endDate | date: 'dd/MM/yyyy'}}</td>
+          <td data-label="Subscription Plan">{{med.subscriptionPlan}}</td>
+          <td data-label="Price">{{med.price}}</td>
+          <td data-label="Billing Cycle">{{med.billingCycle}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

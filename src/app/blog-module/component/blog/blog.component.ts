@@ -30,6 +30,7 @@ export class BlogComponent {
   expan = true;
 
   navBerData = [
+    { name: 'Client', link: 'client', permission: 2 },
     { name: 'Post', link: 'post', permission: 2 },
     { name: 'New Post', link: 'new-post', permission: 2 },
     { name: 'Category', link: 'category', permission: 2 }

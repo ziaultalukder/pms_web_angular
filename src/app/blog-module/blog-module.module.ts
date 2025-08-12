@@ -14,6 +14,10 @@ import { PostService } from './service/post/post.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from '../guards/auth.interceptor';
 import { PostDetailsComponent } from './component/post-details/post-details.component';
+import { ClientComponent } from './component/client/client.component';
+import { AddClientComponent } from './component/add-client/add-client.component';
+import { UpdateClientComponent } from './component/update-client/update-client.component';
+import { ConfigurationService } from '../admin/service/configuration/configuration.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,10 @@ import { PostDetailsComponent } from './component/post-details/post-details.comp
     NewPostComponent,
     EditPostComponent,
     NotfoudComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    ClientComponent,
+    AddClientComponent,
+    UpdateClientComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +40,7 @@ import { PostDetailsComponent } from './component/post-details/post-details.comp
     HttpClientModule,
   ],
   providers:[
-    PostService,
+    PostService, ConfigurationService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}, 
   ]
 })

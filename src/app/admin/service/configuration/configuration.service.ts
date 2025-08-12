@@ -76,4 +76,8 @@ export class ConfigurationService {
     return this.http.get<any>(this.url + '/GetUserUploadItem?id='+id);
   }
 
+  GetClient(): Observable<any> {
+    return this.http.get<any>(this.url + '/GetAllClient');
+  }
+
 }
